@@ -1,11 +1,17 @@
 import Event from "./Event";
+import styles from './EventList.module.css';
+
 export default function EventList(props) {
+   
     return (
-        <div>
+      
+        <div className={styles.list}>
           <ul>
-            {props.list.map(event=>{
-               return <Event t={event.title} des={event.description} i={event.image}/>
-            })}
+          {
+            props.list.map(event=>{
+                return <Event id={event.id} t={event.title} i={event.image} d={event.date} loc={event.location}/>
+            })
+          }
           </ul>
         </div>
       
