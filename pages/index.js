@@ -2,9 +2,6 @@
 import { getFeaturedEvents } from "@/dummy-data";
 import EventList from "@/components/events/EventList";
 
-
-
-
 export default function FeaturedEventsPage() {
   const arr=getFeaturedEvents();
   console.log(arr)

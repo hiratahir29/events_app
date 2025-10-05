@@ -5,7 +5,7 @@ import Button from "../ui/Button";
 export default function Event(props) {
     return (
         <li className={styles.item}>
-            <img src={'/'+props.i} alt={props.t}/>
+            <img src={'./'+props.i} alt={props.t}/>
             <div className={styles.content}>
                 <div className={styles.summary}>
                     <h2>{props.t}</h2>
