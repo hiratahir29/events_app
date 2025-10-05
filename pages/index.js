@@ -7,7 +7,7 @@ export default function FeaturedEventsPage() {
   console.log(arr)
   return (
     
-      <div>
+      <div style={{textAlign:"center",fontFamily:"cursive"}}>
         <h1>Home Page: All Featured Events</h1> 
         <EventList list={arr}/>
       </div>
