@@ -18,6 +18,7 @@ export default async function handler(req,res)
         res.status(200).json({message:"added new comment",comment:newComment});
     }
     else {
+        console.log("I am here")
         const client=await MongoClient.connect("mongodb+srv://hira:12345.@cluster0.gm1ug.mongodb.net/commentsList?retryWrites=true&w=majority&appName=Cluster0")
         const db=client.db();
         const result = await db.collection("comm").find().toArray();
