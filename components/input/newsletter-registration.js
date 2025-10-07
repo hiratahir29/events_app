@@ -1,25 +1,36 @@
+import { useRef } from 'react';
 import classes from './newsletter-registration.module.css';
 
+
 function NewsletterRegistration() {
+
+  const e=useRef();
   function registrationHandler(event) {
     event.preventDefault();
-
-    // fetch user input (state or refs) later
+    fetch('/api/newsletter',{
+      method:'POST',
+      body:JSON.stringify({email:e.current.value}),
+      headers:{
+        'Content-Type':'application/json'
+      }
+    }).then(res=>res.json()).then(data=>console.log(data))
+  
 
   }
 
   return (
     <section className={classes.newsletter}>
       <h2>Sign up to stay updated!</h2>
-      <form onSubmit={registrationHandler}>
+      <form>
         <div className={classes.control}>
           <input
             type='email'
             id='email'
             placeholder='Your email'
             aria-label='Your email'
+            ref={e}
           />
-          <button>Register</button>
+          <button onClick={registrationHandler}>Register</button>
         </div>
       </form>
     </section>
