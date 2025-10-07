@@ -39,7 +39,11 @@ const DUMMY_EVENTS = [
     return DUMMY_EVENTS;
   }
   
-  export function getFilteredEvents(dateFilter) {
+  export function getEventById(id) {
+    return DUMMY_EVENTS.find((event) => event.id === id);
+  }
+  
+    export function getFilteredEvents(dateFilter) {
     const { year, month } = dateFilter;
   
     let filteredEvents = DUMMY_EVENTS.filter((event) => {
@@ -49,8 +53,3 @@ const DUMMY_EVENTS = [
   
     return filteredEvents;
   }
-  
-  export function getEventById(id) {
-    return DUMMY_EVENTS.find((event) => event.id === id);
-  }
-  
