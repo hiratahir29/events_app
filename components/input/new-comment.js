@@ -3,9 +3,24 @@ import classes from './new-comment.module.css';
 
 function NewComment(props) {
 
+  const [isInvalid, setIsInvalid] = useState(false);
   const emailInputRef = useRef();
   const nameInputRef = useRef();
   const commentInputRef = useRef();
+  function sendCommentHandler(event) {
+    event.preventDefault();
+
+    const enteredEmail = emailInputRef.current.value;
+    const enteredName = nameInputRef.current.value;
+    const enteredComment = commentInputRef.current.value;
+
+
+    props.onAddComment({
+      email: enteredEmail,
+      name: enteredName,
+      text: enteredComment,
+    });
+  }
 
   
   return (
@@ -24,8 +39,8 @@ function NewComment(props) {
         <label htmlFor='comment'>Your comment</label>
         <textarea id='comment' rows='5' ref={commentInputRef}></textarea>
       </div>
-    
-      <button>Submit</button>
+      {isInvalid && <p>Please enter a valid email address and comment!</p>}
+      <button onClick={sendCommentHandler}>Submit</button>
     </form>
   );
 }
