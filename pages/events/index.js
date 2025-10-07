@@ -3,16 +3,25 @@ import EventSearch from "@/components/events/EventSearch";
 import { getAllEvents } from "@/dummy-data";
 
 
-
-
-export default function AllEventsPage() {
-  const eventlist=getAllEvents();
+ function AllEventsPage(props) {
+    const arr=props.allEvents;
     return (
+      
         <div style={{textAlign:"center",fontFamily:"cursive"}}>
-          <EventSearch/>
           <h1>All Events Page</h1>
-          <EventList list={eventlist}/>
+          <EventSearch/>
+          <EventList list={arr}/> 
         </div>
       
     );
   }
+
+  export async function getStaticProps(){
+    const all=await getAllEvents();
+    return{
+      props:{
+        allEvents:all
+      }
+    }
+  }
+  export default AllEventsPage;
