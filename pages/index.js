@@ -25,8 +25,9 @@ export async function getStaticProps(){
   return {
     props:{
       fevents:arr
-    },
-    revalidate:1800 //every half hour
+    }
+    // ,
+    // revalidate:1800 //every half hour but not working cz of github pages hosting
   }
 }
 
