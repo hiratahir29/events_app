@@ -1,22 +1,26 @@
-export default function handler(req,res)
+import { MongoClient } from "mongodb";
+
+export default async function handler(req,res)
 {
     if(req.method==="POST")
     {
         const {name, email, text} = req.body.commentObj;
         const newComment={
-            id:new Date().toISOString(),
             name,
             email,
             text
         }
+        const client=await MongoClient.connect("mongodb+srv://hira:12345.@cluster0.gm1ug.mongodb.net/commentsList?retryWrites=true&w=majority&appName=Cluster0")
+        const db=client.db();
+        const result = await db.collection("comm").insertOne(newComment)
+        console.log(result)
+        newComment.id=result.insertedId
         res.status(200).json({message:"added new comment",comment:newComment});
     }
     else {
-       const dummy_arr=[
-        {id:1,name:'umer',comment:'good post'},
-        {id:2,name:'ali',comment:'not good post'},
-        {id:3,name:'hassan',comment:'ok good post'}
-       ]
-       res.status(200).json({arr:dummy_arr})
+        const client=await MongoClient.connect("mongodb+srv://hira:12345.@cluster0.gm1ug.mongodb.net/commentsList?retryWrites=true&w=majority&appName=Cluster0")
+        const db=client.db();
+        const result = await db.collection("comm").find().toArray();
+       res.status(200).json({arr:result})
     }
 }
